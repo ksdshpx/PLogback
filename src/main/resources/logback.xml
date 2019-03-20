@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    scan属性为true时，配置文件发生变化，将会被重新加载，默认值也为true
+    scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位为毫秒，
+               该属性只有scan为true时才生效
+    debug:如果属性设置为true时，将打印出logback内部的日志信息，实时查看logback运行状态，默认为false
+-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!--
+        1.将日志输出到控制台
+            name:定义该日志附加器的名称
+            class:定义该日志附加器的全限定类名
+    -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                <!--设置日志输出格式-->
+                [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c%l - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!--
+        日志的根标签
+        root默认的日志级别为debug
+    -->
+    <root>
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
