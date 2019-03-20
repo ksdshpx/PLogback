@@ -15,7 +15,7 @@
         <encoder>
             <pattern>
                 <!--设置日志输出格式-->
-                [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c%l - %m%n
+                [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c%L - %m%n
             </pattern>
         </encoder>
     </appender>
@@ -25,6 +25,8 @@
         root默认的日志级别为debug
     -->
     <root>
+        <!--定义根日志输出最低日志级别 -->
+        <level value="info"/>
         <appender-ref ref="console"/>
     </root>
 </configuration>
