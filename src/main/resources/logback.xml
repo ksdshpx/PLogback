@@ -18,6 +18,12 @@
                 [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c%L - %m%n
             </pattern>
         </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>warn</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMissmatch>DENY</onMissmatch>
+        </filter>
     </appender>
 
     <!--
