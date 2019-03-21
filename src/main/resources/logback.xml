@@ -15,7 +15,7 @@
         <encoder>
             <pattern>
                 <!--设置日志输出格式-->
-                [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c%L - %m%n
+                [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c:%L - %m%n
             </pattern>
         </encoder>
 
@@ -36,7 +36,42 @@
         <append>true</append>
         <encoder>
             <pattern>
-                [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c%L - %m%n
+                [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c:%L - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!--滚动文件追加器-->
+    <appender name="rollFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <!--设置日志滚动的策略-->
+        <!--
+            滚动记录日志文件，先将日志记录到指定的文件，当符合某个条件时，将日志记录到其它文件
+            最常用的滚动策略：它是根据时间来制定滚动策略，即负责滚动也负责触发滚动
+        -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志输出的位置，可以是相对的也可以是绝对的-->
+            <!--
+                %i:控制单个日志文件如果大小超过多少，那么就会生成一个新的日志文件，i就是生成新的日志文件的数量值，默认最大为7个
+            -->
+            <fileNamePattern>
+                d:/logger/%d{yyyy-MM-dd}/rollFile-%i.log
+            </fileNamePattern>
+
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!--定义单个日志文件的大小最大值-->
+                <MaxFileSize>2kb</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                [logback-demo] %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] %c:%L - %m%n
             </pattern>
         </encoder>
     </appender>
@@ -49,5 +84,6 @@
         <level value="info"/>
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
+        <appender-ref ref="rollFile"/>
     </root>
 </configuration>
