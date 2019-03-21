@@ -27,6 +27,20 @@
     </appender>
 
     <!--
+        2.将日志输出到文件
+        file:被写入的文件名称，可以是相对的目录，也可以是绝对的目录，如果上级目录不存在，会自动会创建，没有默认值
+        append:如果为true,日志会被追加文件的结果，如果是false,清空现存文件，默认值为true
+    -->
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>d:/logger/logbackfile.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>
+                [PLogback] %d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %c%L - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+    <!--
         日志的根标签
         root默认的日志级别为debug
     -->
@@ -34,5 +48,6 @@
         <!--定义根日志输出最低日志级别 -->
         <level value="info"/>
         <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
     </root>
 </configuration>
