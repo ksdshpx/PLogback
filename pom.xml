@@ -27,6 +27,26 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>cn.ksdshpx.maven</groupId>
+                <artifactId>PMaven_Plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <msg>this is a msg</msg>
+                    <options>
+                        <option>one</option>
+                        <option>two</option>
+                    </options>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>ksdshpx</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
